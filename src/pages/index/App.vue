@@ -26,6 +26,12 @@
           </div>
           <div>开发模板</div>
         </div>
+        <div class="appList co-flex co-ver co-ac co-jc" @click="goHtml('health-management')">
+          <div class="appBg co-flex co-ac co-jc">
+            <i class="coicon coicon-edit icon-wh"></i>
+          </div>
+          <div>健康管理</div>
+        </div>
       </div>
     </div>
   </div>
