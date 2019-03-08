@@ -1,5 +1,11 @@
+/**
+ * @description 首页人员信息
+ * @author zhangli (zhangli@coracle.com)
+ * @date 2019/03/07
+ */
+
 <template>
-  <div class="person-con co-flex">
+  <div class="person-con co-flex co-bg-0">
     <div class="person-card">
       <div class="person-name co-flex co-ac">
         <img class="person-icon" :src="personIcon" alt="头像">
@@ -21,7 +27,7 @@
 <script>
 import personIcon from '../../assets/images/person_icon.png'
 export default {
-  name: 'personCard',
+  name: 'PersonCard',
   components: {
   },
   data () {

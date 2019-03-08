@@ -1,3 +1,9 @@
+/**
+ * @description 起始页场馆列表
+ * @author zhangli (zhangli@coracle.com)
+ * @date 2019/03/07
+ */
+
 <template>
   <div>
    <div @click="goMain" class="co-pd-a08 co-bg-5 co-tx-c co-cl-0 co-mg-a06">场馆一</div>
@@ -8,7 +14,7 @@
 
 <script>
 export default {
-  name: 'venueList',
+  name: 'VenueList',
   components: {
   },
   data () {

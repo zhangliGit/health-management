@@ -1,3 +1,9 @@
+/**
+ * @description 通知列表
+ * @author zhangli (zhangli@coracle.com)
+ * @date 2019/03/07
+ */
+
 <template>
   <div class="co-f1 co-flex co-ver co-cl-1 notice_list">
     <HeaderCom isBack :title="title"></HeaderCom>
@@ -10,9 +16,9 @@
 <script>
 import HeaderCom from '@c/HeaderCom'
 import ScrollList from '@c/ScrollList'
-import NoticeCard from '../components/layout/noticeCard'
+import NoticeCard from '../components/layout/NoticeCard'
 export default {
-  name: 'index',
+  name: 'NoticeList',
   components: {
     HeaderCom,
     ScrollList,

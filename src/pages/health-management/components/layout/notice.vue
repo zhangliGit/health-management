@@ -1,21 +1,27 @@
+/**
+ * @description 首页通知信息
+ * @author zhangli (zhangli@coracle.com)
+ * @date 2019/03/07
+ */
+
 <template>
-  <div class="notice">
+  <div class="notice co-bg-0">
     <div class="notice-head co-flex co-ac">
-      <div class="co-f1 co-fs-2">
+      <div class="co-f1 co-fs-1">
         通知公告
       </div>
-      <div @click="noticeList">
-        更多<i class="coicon coicon-enter co-fs-1" ></i>
+      <div @click="noticeList" class="co-fs-01 co-cl-3">
+        更多<i class="coicon coicon-enter co-fs-01" ></i>
       </div>
     </div>
     <div class="notice-list">
       <div class="notice-list-item co-flex co-jc co-bd-b co-ver">
-        <div>泛亚新园区场馆投入使用</div>
-        <div class="co-mg-t04">2018-10-20</div>
+        <div class="co-flex co-te">泛亚新园区场馆投入使用</div>
+        <div class="co-mg-t04 co-cl-2 co-fs-01">2018-10-20</div>
       </div>
       <div class="notice-list-item co-flex co-jc co-bd-b co-ver">
         <div>泛亚新园区场馆投入使用</div>
-        <div class="co-mg-t04">2018-10-20</div>
+        <div class="co-mg-t04 co-cl-2 co-fs-01">2018-10-20</div>
       </div>
     </div>
   </div>
@@ -23,7 +29,7 @@
 
 <script>
 export default {
-  name: 'notice',
+  name: 'Notice',
   components: {
   },
   data () {
@@ -44,7 +50,7 @@ export default {
 
 <style lang="less" scoped>
   .notice {
-    padding: 0 40px;
+    padding: 0 40px 20px;
     .notice-list {
       margin-top: 20px;
     }

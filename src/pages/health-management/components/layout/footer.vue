@@ -1,3 +1,9 @@
+/**
+ * @description 底部导航
+ * @author zhangli (zhangli@coracle.com)
+ * @date 2019/03/07
+ */
+
 <template>
     <div class="footer-com co-flex co-ac co-bd-t">
       <div @click="footMenu(item, index)" :class="['foot-list co-f1 co-flex co-ver co-ac co-jc', {'foot-list--active': currentIndex === index}]" v-for = "(item, index) in footList" :key="index">
@@ -11,7 +17,7 @@
 </template>
 <script>
 export default {
-  name: 'footerCom',
+  name: 'FooterCom',
   components: {
   },
   props: {

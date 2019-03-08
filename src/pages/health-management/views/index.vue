@@ -1,3 +1,9 @@
+/**
+ * @description 起始页
+ * @author zhangli (zhangli@coracle.com)
+ * @date 2019/03/07
+ */
+
 <template>
   <div class="co-f1 co-flex co-ver co-cl-1">
     <HeaderCom :title="title"></HeaderCom>
@@ -10,14 +16,14 @@
 
 <script>
 import HeaderCom from '@c/HeaderCom'
-import agree from '../components/layout/agree'
-import venueList from '../components/layout/venueList'
+import Agree from '../components/layout/Agree'
+import VenueList from '../components/layout/VenueList'
 export default {
-  name: 'index',
+  name: 'Index',
   components: {
     HeaderCom,
-    agree,
-    venueList
+    Agree,
+    VenueList
   },
   data () {
     return {

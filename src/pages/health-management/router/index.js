@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import index from '../views/index.vue'
-const container = (resolve) => { require(['../views/container.vue'], resolve) }
-const qrCode = (resolve) => { require(['../views/qrCode.vue'], resolve) }
-const noticeList = (resolve) => { require(['../views/noticeList.vue'], resolve) }
+const container = (resolve) => { require(['../views/Container.vue'], resolve) }
+const qrCode = (resolve) => { require(['../views/QrCode.vue'], resolve) }
+const noticeList = (resolve) => { require(['../views/NoticeList.vue'], resolve) }
+const placeList = (resolve) => { require(['../views/PlaceList.vue'], resolve) }
 Vue.use(Router)
 Router.prototype.goBack = function () {
   this.isBack = true
@@ -31,6 +32,11 @@ export default new Router({
       path: '/noticeList',
       name: 'noticeList',
       component: noticeList
+    },
+    {
+      path: '/placeList',
+      name: 'placeList',
+      component: placeList
     }
   ]
 })

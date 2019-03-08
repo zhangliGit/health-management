@@ -1,3 +1,9 @@
+/**
+ * @description 首页
+ * @author zhangli (zhangli@coracle.com)
+ * @date 2019/03/07
+ */
+
 <template>
   <div class="co-f1 co-flex co-ver">
     <scroll-list ref="scroll">
@@ -11,17 +17,17 @@
 <script>
 import HeaderCom from '@c/HeaderCom'
 import ScrollList from '@c/ScrollList'
-import banner from '../components/layout/banner'
-import personCard from '../components/layout/personCard'
-import notice from '../components/layout/notice'
+import Banner from '../components/layout/Banner'
+import PersonCard from '../components/layout/PersonCard'
+import Notice from '../components/layout/Notice'
 export default {
-  name: 'home',
+  name: 'Home',
   components: {
     HeaderCom,
     ScrollList,
-    banner,
-    personCard,
-    notice
+    Banner,
+    PersonCard,
+    Notice
   },
   data () {
     return {

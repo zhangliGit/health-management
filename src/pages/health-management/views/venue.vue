@@ -1,3 +1,9 @@
+/**
+ * @description 场馆
+ * @author zhangli (zhangli@coracle.com)
+ * @date 2019/03/07
+ */
+
 <template>
   <div class="co-f1 co-flex co-ver">
     <scroll-list ref="scroll">
@@ -8,9 +14,9 @@
 
 <script>
 import ScrollList from '@c/ScrollList'
-import VenueType from '../components/layout/venueType'
+import VenueType from '../components/layout/VenueType'
 export default {
-  name: 'venue',
+  name: 'Venue',
   components: {
     ScrollList,
     VenueType

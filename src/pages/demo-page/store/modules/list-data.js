@@ -4,7 +4,7 @@ const demoPage = {
   state: {
     page: 1,
     pageSize: 10,
-    dataList: JSON.parse(window.localStorage.getItem('vuex')).demoPage.dataList || [],
+    dataList: [],
     dataDetail: {}
   },
   actions: {

@@ -1,6 +1,12 @@
+/**
+ * @description 通知列表项
+ * @author zhangli (zhangli@coracle.com)
+ * @date 2019/03/07
+ */
+
 <template>
-  <div class="notice-card co-bg-0">
-    <div class="notice-card-list" v-for="notice in noticeList" :key="notice.id">
+  <div class="notice-card">
+    <div class="notice-card-list co-bg-0 co-mg-t04" v-for="notice in noticeList" :key="notice.id">
       <div class="co-flex notice-card-title co-jsb co-bd-b">
         <span>{{notice.send}}</span>
         <span>{{notice.time}}</span>
@@ -20,7 +26,7 @@
 
 <script>
 export default {
-  name: 'noticeCard',
+  name: 'NoticeCard',
   components: {
   },
   props: {
@@ -46,15 +52,14 @@ export default {
 
 <style lang="less" scoped>
   .notice-card {
-    padding: 30px;
     .notice-card-list {
-      padding-top: 30px;
+      padding: 30px;
       &:first-child {
-        padding-top: 0px
+        margin-top: 0px;
       }
     }
     .notice-card-title {
-      padding: 25px 0px
+      padding-bottom: 25px;
     }
   }
 </style>

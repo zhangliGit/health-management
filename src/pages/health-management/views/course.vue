@@ -1,3 +1,9 @@
+/**
+ * @description 课程界面
+ * @author zhangli (zhangli@coracle.com)
+ * @date 2019/03/07
+ */
+
 <template>
   <div class="co-f1 co-flex co-ver">
     <scroll-list ref="scroll">
@@ -8,9 +14,9 @@
 
 <script>
 import ScrollList from '@c/ScrollList'
-import CourseList from '../components/layout/courseList'
+import CourseList from '../components/layout/CourseList'
 export default {
-  name: 'home',
+  name: 'Course',
   components: {
     ScrollList,
     CourseList

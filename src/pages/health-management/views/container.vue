@@ -1,3 +1,9 @@
+/**
+ * @description 主框架
+ * @author zhangli (zhangli@coracle.com)
+ * @date 2019/03/07
+ */
+
 <template>
   <div class="co-f1 co-flex co-ver">
     <header-com :title="title"></header-com>
@@ -10,23 +16,25 @@
 
 <script>
 import HeaderCom from '@c/HeaderCom'
-import FooterCom from '../components/layout/footer'
-import Home from './home'
-import Venue from './venue'
-import Course from './course'
+import FooterCom from '../components/layout/Footer'
+import Home from './Home'
+import Venue from './Venue'
+import Course from './Course'
+import Choice from './Choice'
 export default {
-  name: 'container',
+  name: 'Container',
   components: {
     HeaderCom,
     FooterCom,
     Home,
     Venue,
-    Course
+    Course,
+    Choice
   },
   data () {
     return {
       title: '健康管理平台',
-      menuList: [Home, Venue, Course],
+      menuList: [Home, Venue, Course, Choice],
       currentCom: Home,
       footList: [
         {

@@ -7,17 +7,21 @@
 <template>
   <div class="course-type">
     <div class="course-type-list co-flex co-bd-b co-bg-0 co-pd-lr08" v-for="course in courseList" :key="course.id">
-      <div class="course-type-img co-bd-a1">
-        <img :src="typeImg" alt="">
+      <div class="">
+        <div class="course-type-img co-bd-a1">
+          <img :src="typeImg" alt="">
+        </div>
       </div>
       <div class="co-f1 co-pd-l06">
         <div>{{course.name}}</div>
-        <div>教练：{{course.teacher}}</div>
-        <div class="co-mg-t04 co-fs-01 co-cl-2">还可预约{{course.number}}</div>
+        <div class="co-mg-t04">教练：{{course.teacher}}</div>
         <div class="co-mg-t04 co-fs-01 co-cl-2">开放时间：{{course.time}}</div>
       </div>
-      <div class="course-choose co-bd-a1 co-flex co-ac">
-        <i class="coicon coicon-clock co-fs-2"></i><span class="co-fs-01 co-pd-l02">预约</span>
+      <div class="co-flex co-ver co-ae">
+        <div class="course-choose co-bd-a1 co-flex co-ac co-jc">
+          <i class="coicon coicon-clock co-fs-2"></i><span class="co-fs-01 co-pd-l02">预约</span>
+        </div>
+        <div class="co-mg-t08">还可预约{{course.number}}人</div>
       </div>
     </div>
   </div>
@@ -26,7 +30,7 @@
 <script>
 import typeImg from '../../assets/images/type.png'
 export default {
-  name: 'courseList',
+  name: 'CourseList',
   components: {
   },
   props: {
@@ -57,17 +61,14 @@ export default {
 <style lang="less" scoped>
   .course-type {
     .course-type-list {
-      padding-top: 30px;
-      padding-bottom: 30px;
+      padding: 32px;
     }
     .course-type-img {
       border-radius: 12px;
-      width: 94px;
-      height: 94px;
       overflow: hidden;
       img {
-        width: 100%;
-        height: 100%;  
+        width: 94px;
+        height: 94px; 
         display: block
       }
     }
@@ -76,7 +77,7 @@ export default {
       border-radius: 40px;
       color:#d0011b;
       height: 60px;
-      padding: 0 18px;
+      width: 150px;
     }
   }
 </style>

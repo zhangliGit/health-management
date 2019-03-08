@@ -1,20 +1,20 @@
 /**
- * @description 项目管理列表
+ * @description 预约列表
  * @author zhangli (zhangli@coracle.com)
- * @date 2019/03/07
+ * @date 2019/03/08
  */
-<template>
-  <div class="venue-type">
-    <div class="venue-type-list co-flex co-ac co-bd-b co-bg-0 co-pd-lr08" v-for="venue in venueData" :key="venue.id">
-      <div class="venue-type-img co-bd-a1">
+<template> 
+  <div class="choice-type">
+    <div class="choice-type-list co-flex co-ac co-bd-b co-bg-0 co-pd-lr08" v-for="choice in choiceList" :key="choice.id">
+      <div class="choice-type-img co-bd-a1">
         <img :src="typeImg" alt="">
       </div>
       <div class="co-f1 co-pd-l06">
-        <div><span class="co-pd-r04">{{venue.name}}</span>({{venue.use}}/{{venue.total}})</div>
-        <div class="co-mg-t04 co-fs-01 co-cl-2">开放时间：{{venue.time}}</div>
+        <div class="co-fs-1">{{choice.time}}</div>
+        <div class="co-mg-t04 co-fs-01 co-cl-2">{{choice.code}}#{{choice.name}}</div>
       </div>
-      <div class="venue-choose co-bd-a1 co-flex co-ac co-jc" @click="placeList">
-        <i class="coicon coicon-clock co-fs-2"></i><span class="co-fs-01 co-pd-l02">预约</span>
+      <div class="choice-choose co-bd-a1 co-flex co-ac co-jc">
+        取消
       </div>
     </div>
   </div>
@@ -23,11 +23,11 @@
 <script>
 import typeImg from '../../assets/images/type.png'
 export default {
-  name: 'VenueType',
+  name: 'ChoiceCard',
   components: {
   },
   props: {
-    venueData: {
+    choiceList: {
       type: Array,
       default: () => {
         return []
@@ -42,8 +42,8 @@ export default {
   computed: {
   },
   methods: {
-    placeList () {
-      this.$router.push('/placeList')
+    goMain () {
+      this.$router.push('/container')
     }
   },
   mounted () {
@@ -52,11 +52,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  .venue-type {
-    .venue-type-list {
+  .choice-type {
+    .choice-type-list {
       height: 150px;
     }
-    .venue-type-img {
+    .choice-type-img {
       border-radius: 12px;
       overflow: hidden;
       img {
@@ -65,7 +65,7 @@ export default {
         display: block
       }
     }
-    .venue-choose {
+    .choice-choose {
       border-color:#d0011b;
       border-radius: 40px;
       color:#d0011b;

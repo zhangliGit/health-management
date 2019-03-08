@@ -1,3 +1,9 @@
+/**
+ * @description 二维码
+ * @author zhangli (zhangli@coracle.com)
+ * @date 2019/03/07
+ */
+
 <template>
   <div class="co-f1 co-flex co-ver co-cl-1 qr_code">
     <HeaderCom isBack :title="title"></HeaderCom>
@@ -23,7 +29,7 @@ import HeaderCom from '@c/HeaderCom'
 import personIcon from '../assets/images/person_icon.png'
 import qrCode from '../assets/images/qr_code.png'
 export default {
-  name: 'index',
+  name: 'QrCode',
   components: {
     HeaderCom,
   },

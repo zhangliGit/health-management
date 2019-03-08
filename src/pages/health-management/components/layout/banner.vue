@@ -1,3 +1,9 @@
+/**
+ * @description 首页banner图
+ * @author zhangli (zhangli@coracle.com)
+ * @date 2019/03/07
+ */
+
 <template>
   <div class="swiper-scroll">
     <swiper :options="swiperOption" ref="mySwiper">
@@ -14,7 +20,7 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 import banner from '../../assets/images/banner.png'
 export default {
-  name: 'banner',
+  name: 'Banner',
   components: {
     swiper,
     swiperSlide
