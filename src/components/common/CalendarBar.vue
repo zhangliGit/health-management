@@ -59,6 +59,7 @@ export default {
       this.scroll = new BScroll(this.$refs.wrapper, {
         click: true,
         scrollX: true,
+        scrollY: false,
       })
       this.getScrollLength()
     })
