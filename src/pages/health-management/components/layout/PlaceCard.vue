@@ -5,16 +5,16 @@
  */
 <template> 
   <div class="place-type">
-    <div class="co-mg-t05" v-for="place in placeList" :key="place.id">
+    <div class="co-mg-t05" v-for="place in placeNumList" :key="place.id">
       <div class="place-type-list co-flex co-ac co-bg-0">
         <div class="place-type-img co-bd-a1">
-          <img :src="typeImg" alt="">
+          <img :src="place.icon" alt="">
         </div>
         <div class="co-f1 co-pd-l06">
-          <div class="co-fs-1">{{place.code}}#{{place.name}}</div>
-          <div class="co-mg-t04 co-fs-01 co-cl-2">{{place.venueName}}</div>
+          <div class="co-fs-1">{{place.number}}#{{place.name}}</div>
+          <div class="co-mg-t04 co-fs-01 co-cl-2">泛亚场馆</div>
         </div>
-        <div class="place-choose co-bd-a1 co-flex co-ac co-jc">
+        <div @click="choiceP(place.id, place.number)" class="place-choose co-bd-a1 co-flex co-ac co-jc">
           预定
         </div>
       </div>
@@ -32,13 +32,14 @@
 <script>
 import typeImg from '../../assets/images/type.png'
 import LevelScroll from '@c/LevelScroll'
+import { mapActions } from 'vuex'
 export default {
   name: 'PlaceCard',
   components: {
     LevelScroll
   },
   props: {
-    placeList: {
+    placeNumList: {
       type: Array,
       default: () => {
         return []
@@ -47,12 +48,21 @@ export default {
   },
   data () {
     return {
-      typeImg
     }
   },
   computed: {
   },
   methods: {
+    ...mapActions('place', [
+      'choicePlace'
+    ]),
+    choiceP () {
+      this.choicePlace({
+        cb: () => {
+          this.$loading.toast('预约成功', 1)
+        }
+      })
+    }
   },
   mounted () {
   }

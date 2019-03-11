@@ -8,7 +8,7 @@
   <div class="notice-card">
     <div class="notice-card-list co-bg-0 co-mg-t04" v-for="notice in noticeList" :key="notice.id">
       <div class="co-flex notice-card-title co-jsb co-bd-b">
-        <span>{{notice.send}}</span>
+        <span>{{notice.createName}}</span>
         <span>{{notice.time}}</span>
       </div>
       <div class="co-flex co-pd-t05">

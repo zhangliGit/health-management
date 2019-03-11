@@ -9,16 +9,16 @@
     <div class="course-type-list co-flex co-bd-b co-bg-0 co-pd-lr08" v-for="course in courseList" :key="course.id">
       <div class="">
         <div class="course-type-img co-bd-a1">
-          <img :src="typeImg" alt="">
+          <img :src="course.icon" alt="">
         </div>
       </div>
       <div class="co-f1 co-pd-l06">
         <div>{{course.name}}</div>
         <div class="co-mg-t04">教练：{{course.teacher}}</div>
-        <div class="co-mg-t04 co-fs-01 co-cl-2">开放时间：{{course.time}}</div>
+        <div class="co-mg-t04 co-fs-01 co-cl-2">课程时间：{{course.time}}</div>
       </div>
       <div class="co-flex co-ver co-ae">
-        <div class="course-choose co-bd-a1 co-flex co-ac co-jc">
+        <div class="course-choose co-bd-a1 co-flex co-ac co-jc" @click="choice">
           <i class="coicon coicon-clock co-fs-2"></i><span class="co-fs-01 co-pd-l02">预约</span>
         </div>
         <div class="co-mg-t08">还可预约{{course.number}}人</div>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import typeImg from '../../assets/images/type.png'
+import { mapActions } from 'vuex'
 export default {
   name: 'CourseList',
   components: {
@@ -43,14 +43,20 @@ export default {
   },
   data () {
     return {
-      typeImg
     }
   },
   computed: {
   },
   methods: {
-    goMain () {
-      this.$router.push('/container')
+    ...mapActions('course', [
+      'choiceCourse'
+    ]),
+    choice (id) {
+      this.choiceCourse({
+        cb: () => {
+          this.$loading.toast('预约成功', 1)
+        }
+      })
     }
   },
   mounted () {
@@ -67,8 +73,8 @@ export default {
       border-radius: 12px;
       overflow: hidden;
       img {
-        width: 94px;
-        height: 94px; 
+        width: 98px;
+        height: 98px; 
         display: block
       }
     }

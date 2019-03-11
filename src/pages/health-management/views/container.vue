@@ -7,7 +7,7 @@
 <template>
   <div class="co-f1 co-flex co-ver">
     <header-com :title="title"></header-com>
-    <div class="co-f1">
+    <div class="co-f1 co-flex">
       <component :is="currentCom"></component>
     </div>
     <footer-com @current-menu="currentMenu" :footList = "footList"></footer-com>

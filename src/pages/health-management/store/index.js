@@ -3,18 +3,15 @@
  */
 import Vue from 'vue'
 import Vuex from 'vuex'
+import venue from './modules/venue'
+import place from './modules/place'
+import course from './modules/course'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-  },
-  state: {
-  },
-  getters: {
-  },
-  actions: {
-
-  },
-  mutations: {
+    venue,
+    place,
+    course
   }
 })

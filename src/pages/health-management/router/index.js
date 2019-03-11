@@ -34,7 +34,7 @@ export default new Router({
       component: noticeList
     },
     {
-      path: '/placeList',
+      path: '/placeList/:index/:id',
       name: 'placeList',
       component: placeList
     }

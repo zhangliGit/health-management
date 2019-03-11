@@ -6,9 +6,9 @@
 
 <template>
   <div class="co-f1 co-flex co-ver">
-    <tab-menu :tab-menu="tabMenu"></tab-menu>
+    <tab-menu :tab-menu="tabMenu"  @tabCurrent = "tabCurrent"></tab-menu>
     <scroll-list ref="scroll">
-      <choice-card :choice-list="choiceList"></choice-card>
+      <choice-card :type="type" :choice-list="myChoice"></choice-card>
     </scroll-list>
   </div>
 </template>
@@ -17,6 +17,7 @@
 import ScrollList from '@c/ScrollList'
 import TabMenu from '@c/TabMenu'
 import ChoiceCard from '../components/layout/ChoiceCard'
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'Choice',
   components: {
@@ -26,41 +27,38 @@ export default {
   },
   data () {
     return {
+      type: 1,
       tabMenu: [
         {
           id: 0,
-          name: '已预约'
+          name: '已预约',
+          type: 1
         },
         {
           id: 1,
-          name: '已签到'
+          name: '已签到',
+          type: 2
         },
         {
           id: 2,
-          name: '已取消'
-        }
-      ],
-      choiceList: [
-        {
-          id: 0,
-          icon: 'coicon-flip',
-          name: '瑜伽课',
-          time: '11月12号 19:00',
-          code: '10'
-        },
-        {
-          id: 1,
-          icon: 'coicon-flip',
-          name: '兵兵球',
-          time: '11月12号 19:00',
-          code: '10'
+          name: '已取消',
+          type: 3
         }
       ]
     }
   },
   computed: {
+    ...mapState('course', [
+      'myChoice'
+    ])
   },
   methods: {
+    ...mapActions('course', [
+      'choiceList'
+    ]),
+    tabCurrent (item) {
+      this.type = item.type
+    }
   },
   mounted () {
   }

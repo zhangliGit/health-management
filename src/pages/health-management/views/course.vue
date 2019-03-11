@@ -15,6 +15,7 @@
 <script>
 import ScrollList from '@c/ScrollList'
 import CourseList from '../components/layout/CourseList'
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'Course',
   components: {
@@ -23,21 +24,20 @@ export default {
   },
   data () {
     return {
-      courseList: [
-        {
-          id: 0,
-          icon: 'coicon-flip',
-          name: '瑜伽课',
-          teacher: '张老师',
-          number: '15',
-          time: '10:00-22:00'
-        }
-      ]
     }
   },
   computed: {
+    ...mapState('course', [
+      'courseList'
+    ])
   },
   methods: {
+    ...mapActions('course', [
+      'getCourseList'
+    ])
+  },
+  created() {
+    this.getCourseList()
   },
   mounted () {
   }

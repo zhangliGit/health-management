@@ -10,18 +10,14 @@
       <div class="co-f1 co-fs-1">
         通知公告
       </div>
-      <div @click="noticeList" class="co-fs-01 co-cl-3">
+      <div @click="goList" class="co-fs-01 co-cl-3">
         更多<i class="coicon coicon-enter co-fs-01" ></i>
       </div>
     </div>
     <div class="notice-list">
-      <div class="notice-list-item co-flex co-jc co-bd-b co-ver">
-        <div class="co-flex co-te">泛亚新园区场馆投入使用</div>
-        <div class="co-mg-t04 co-cl-2 co-fs-01">2018-10-20</div>
-      </div>
-      <div class="notice-list-item co-flex co-jc co-bd-b co-ver">
-        <div>泛亚新园区场馆投入使用</div>
-        <div class="co-mg-t04 co-cl-2 co-fs-01">2018-10-20</div>
+      <div class="notice-list-item co-flex co-jc co-bd-b co-ver" v-for="notice in noticeList.slice(0, 4)" :key="notice.id">
+        <div class="co-flex co-te">{{notice.title}}</div>
+        <div class="co-mg-t04 co-cl-2 co-fs-01">{{notice.time}}</div>
       </div>
     </div>
   </div>
@@ -32,6 +28,14 @@ export default {
   name: 'Notice',
   components: {
   },
+  props: {
+    noticeList: {
+      type: Array,
+      default: () => {
+        return []
+      }
+    }
+  },
   data () {
     return {
     }
@@ -39,7 +43,7 @@ export default {
   computed: {
   },
   methods: {
-    noticeList () {
+    goList () {
       this.$router.push('/noticeList')
     }
   },

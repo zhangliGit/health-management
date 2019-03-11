@@ -8,18 +8,22 @@
   <div class="place co-f1 co-flex co-ver co-cl-1">
     <HeaderCom isBack :title="title"></HeaderCom>
     <scroll-list>
-      <div class="place-img"></div>
-      <div class="place-des co-flex co-ac">
-        <div class="">
-          <img src="" alt="">
+      <div class="co-pd-b05">
+        <div class="place-img">
+          <img :src="placeInfo.pic" alt="">
         </div>
-        <div class="co-f1 co-mg-l1">
-          <div class="co-fs-1">羽毛球场</div>
-          <div class="co-mg-t04 co-cl-2">开放时间：周一至周日 16:00 - 22:00 </div>
+        <div class="place-des co-flex co-ac">
+          <div class="place-icon">
+            <img :src="placeInfo.icon" alt="">
+          </div>
+          <div class="co-f1 co-mg-l1">
+            <div class="co-fs-1">{{placeInfo.name}}</div>
+            <div class="co-mg-t04 co-cl-2 co-fs-01">开放时间：{{placeInfo.day}} {{placeInfo.time}} </div>
+          </div>
         </div>
+        <calendar-bar ref="calendarBar" @current-day = "currentDay"></calendar-bar>
+        <place-card :place-num-list="placeNumList"></place-card>
       </div>
-      <calendar-bar ref="calendarBar" @current-day = "currentDay"></calendar-bar>
-      <place-card :place-list="placeList"></place-card>
     </scroll-list>
   </div>
 </template>
@@ -29,6 +33,7 @@ import HeaderCom from '@c/HeaderCom'
 import ScrollList from '@c/ScrollList'
 import CalendarBar from '@c/CalendarBar'
 import PlaceCard from '../components/layout/PlaceCard'
+import { mapState, mapActions} from 'vuex'
 export default {
   name: 'PlaceList',
   components: {
@@ -39,30 +44,27 @@ export default {
   },
   data () {
     return {
-      title: '场地列表',
-      placeList: [
-        {
-          id: 1,
-          name: '羽毛球场',
-          venueName: '泛亚场馆',
-          code: 1
-        },
-        {
-          id: 2,
-          name: '羽毛球场',
-          venueName: '泛亚场馆',
-          code: 2
-        }
-      ]
+      title: '场地列表'
     }
   },
   created() {
+    this.getPlaceNumList(this.$route.params.id)
   },
   computed: {
+    placeInfo () {
+      return this.placeList[this.$route.params.index] || {}
+    },
+    ...mapState('place', [
+      'placeList',
+      'placeNumList'
+    ])
   },
   methods: {
     currentDay () {
-    }
+    },
+    ...mapActions('place', [
+      'getPlaceNumList'
+    ])
   },
   mounted() {
   },
@@ -75,7 +77,20 @@ export default {
       width: 100%;
       height: 200px;
       background: #333;
-      display: block
+      img {
+        width: 100%;
+        height: 200px;
+        display: block
+      }
+    }
+    .place-icon {
+      img {
+        width:128px;
+        height: 128px;
+        border-radius: 16px;
+        display: block;
+        margin-top: -64px;
+      }
     }
     .place-des {
       height: 132px;

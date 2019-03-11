@@ -7,7 +7,9 @@
 <template>
   <div class="co-f1 co-flex co-ver">
     <scroll-list ref="scroll">
-      <venue-type :venue-data = "venueData"></venue-type>
+      <div>
+        <venue-type :venue-data = "placeList"></venue-type>
+      </div>
     </scroll-list>
   </div>
 </template>
@@ -15,6 +17,7 @@
 <script>
 import ScrollList from '@c/ScrollList'
 import VenueType from '../components/layout/VenueType'
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'Venue',
   components: {
@@ -23,21 +26,20 @@ export default {
   },
   data () {
     return {
-      venueData: [
-        {
-          id: 0,
-          icon: 'coicon-flip',
-          name: '羽毛球',
-          total: '30',
-          use: '15',
-          time: '10:00-22:00'
-        }
-      ]
     }
   },
   computed: {
+    ...mapState('place', [
+      'placeList'
+    ])
   },
   methods: {
+    ...mapActions('place', [
+      'getPlaceList'
+    ])
+  },
+  created () {
+    this.getPlaceList()
   },
   mounted () {
   }

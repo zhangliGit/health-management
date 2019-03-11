@@ -8,13 +8,13 @@
   <div class="person-con co-flex co-bg-0">
     <div class="person-card">
       <div class="person-name co-flex co-ac">
-        <img class="person-icon" :src="personIcon" alt="头像">
+        <img class="person-icon" :src="userInfo.pic" alt="头像">
         <div class="co-f1 name">
           <div>
-            <span class="co-fs-2">张海东</span>
-            <span class="co-pd-l06">Zhang Haidong</span>
+            <span class="co-fs-2">{{userInfo.name}}</span>
+            <span class="co-pd-l06">{{userInfo.ename}}</span>
           </div>
-          <div class="co-mg-t02">EMP PPTAC</div>
+          <div class="co-mg-t02">{{userInfo.department}}</div>
         </div>
         <div @click="qrCode">
           <i class="coicon coicon-headlines co-fs-4"></i>
@@ -25,14 +25,20 @@
 </template>
 
 <script>
-import personIcon from '../../assets/images/person_icon.png'
 export default {
   name: 'PersonCard',
   components: {
   },
+  props: {
+    userInfo: {
+      type: Object,
+      default: () => {
+        return {}
+      }
+    }
+  },
   data () {
     return {
-      personIcon
     }
   },
   computed: {
@@ -68,6 +74,7 @@ export default {
     .person-icon {
       width: 108px;
       height: 108px;
+      border-radius: 100%;
       display: block
     }
     .name {

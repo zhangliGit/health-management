@@ -7,7 +7,7 @@
 <template>
   <div class="co-f1 co-flex co-ver co-cl-1 notice_list">
     <HeaderCom isBack :title="title"></HeaderCom>
-    <scroll-list>
+    <scroll-list ref="scroll" pull-down-refresh pull-up-load :page-size = "size" @show-data = "showData">
       <notice-card :notice-list = "noticeList"></notice-card>
     </scroll-list>
   </div>
@@ -17,6 +17,7 @@
 import HeaderCom from '@c/HeaderCom'
 import ScrollList from '@c/ScrollList'
 import NoticeCard from '../components/layout/NoticeCard'
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'NoticeList',
   components: {
@@ -26,30 +27,30 @@ export default {
   },
   data () {
     return {
-      title: '通知公告',
-      noticeList: [
-        {
-          id: 1,
-          send: '管理员',
-          time: '2019-10-12',
-          title: '园区改造',
-          content: '园区改造园区改造园区改造'
-        },
-        {
-          id: 2,
-          send: '管理员',
-          time: '2019-10-12',
-          title: '园区改造',
-          content: '园区改造园区改造园区改造'
-        }
-      ]
+      title: '通知公告'
     }
   },
-  created() {
-  },
   computed: {
+    ...mapState('venue', [
+      'size',
+      'noticeList'
+    ])
+  },
+  created() {
+    this.showData({
+      type: 0,
+      cb: (len) => {
+        this.$refs.scroll.upShow(len)
+      }
+    })
   },
   methods: {
+    ...mapActions('venue', [
+      'getNoticeList'
+    ]),
+    showData (obj) {
+      this.getNoticeList(obj)
+    }
   },
   mounted() {
   },

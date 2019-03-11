@@ -8,7 +8,7 @@
   <div class="swiper-scroll">
     <swiper :options="swiperOption" ref="mySwiper">
       <swiper-slide class="swiperCom" v-for="(item, index) in swiperImg" :key="index">
-        <img class="swiper-img" :src="item.img" style="width: 100%; height: auto; display: block" alt="" />
+        <img class="swiper-img" :src="item.pic" style="width: 100%; height: auto; display: block" alt="" />
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
@@ -25,16 +25,16 @@ export default {
     swiper,
     swiperSlide
   },
+  props: {
+    swiperImg: {
+      type: Array,
+      default: () => {
+        return []
+      }
+    }
+  },
   data () {
     return {
-      swiperImg: [
-        {
-          img: banner
-        },
-        {
-          img: banner
-        }
-      ],
       swiperOption: {
         loop: true,
         effect: 'slide',
@@ -57,4 +57,7 @@ export default {
 </script>
 
 <style scoped>
+  .swiper-scroll {
+    min-height: 350px
+  }
 </style>
