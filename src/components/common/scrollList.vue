@@ -71,7 +71,7 @@ export default {
     },
     pageSize: {
       type: Number,
-      default: 15
+      default: 10
     },
     toTop: {
       type: Boolean,

@@ -5,6 +5,7 @@ const container = (resolve) => { require(['../views/Container.vue'], resolve) }
 const qrCode = (resolve) => { require(['../views/QrCode.vue'], resolve) }
 const noticeList = (resolve) => { require(['../views/NoticeList.vue'], resolve) }
 const placeList = (resolve) => { require(['../views/PlaceList.vue'], resolve) }
+const classList = (resolve) => { require(['../views/ClassList.vue'], resolve) }
 Vue.use(Router)
 Router.prototype.goBack = function () {
   this.isBack = true
@@ -22,6 +23,11 @@ export default new Router({
       path: '/container',
       name: 'container',
       component: container
+    },
+    {
+      path: '/container/classList',
+      name: 'classList',
+      component: classList
     },
     {
       path: '/qrCode',

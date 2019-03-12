@@ -6,7 +6,11 @@
 
 <template>
   <div class="co-f1 co-flex co-ver">
-    <header-com :title="title"></header-com>
+    <header-com :title="title">
+      <div v-if="title === ''" slot="center-menu">
+        
+      </div>
+    </header-com>
     <div class="co-f1 co-flex">
       <component :is="currentCom"></component>
     </div>
@@ -61,6 +65,11 @@ export default {
   methods: {
     currentMenu (index) {
       this.currentCom = this.menuList[index]
+      if (index === 3) {
+        this.title = ''
+      } else {
+        this.title = '健康管理平台'
+      }
     }
   },
   mounted () {

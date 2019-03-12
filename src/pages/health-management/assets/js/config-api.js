@@ -14,8 +14,10 @@ const apiUrl = {
   noticeList: `${baseUrl}noitceList`, // 通知公告
   placeList: `${baseUrl}placeList`, // 场地列表
   placeNumList: `${baseUrl}placeNumList`, // 场地预约情况列表
+  reservePlace: `${baseUrl}reservePlace`, // 场地预约
   courseList: `${baseUrl}courseList`, // 课程列表
-  courseChoice: `${baseUrl}courseChoice`, // 课程预约
+  classList: `${baseUrl}classList`, // 课程小节列表
+  choiceClass: `${baseUrl}courseChoice`, // 课程预约
   myChoice: `${baseUrl}myChoice` // 预约列表项
 }
 

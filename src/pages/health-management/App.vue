@@ -32,8 +32,9 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
 @import url('../../assets/css/common.css');
+@import url('./assets/css/base.less');
 .Router {
   transition: all .2s ease-in-out;
 }

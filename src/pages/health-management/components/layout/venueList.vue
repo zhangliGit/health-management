@@ -6,11 +6,11 @@
 
 <template>
   <div class="venue-list">
-   <div class="co-pd-t1 co-tx-c co-fs-1 co-cl-2">请您选择一个场馆</div>
-   <div @click="goMain" class="venue-list-item co-bg-0 co-flex co-jsb" v-for="venue in venueList" :key="venue.id">
-     <div class="co-fs-1 co-pd-a1">{{venue.name}}</div>
-     <img :src="venue_img" class="venue-list-img" alt="">
-   </div>
+    <div class="co-pd-t1 co-tx-c co-fs-1 co-cl-2">请您选择一个场馆</div>
+    <div @click="goMain" class="venue-list-item co-bg-0 co-flex co-jsb" v-for="venue in venueList" :key="venue.id">
+      <div class="co-fs-1 co-pd-a1">{{venue.name}}</div>
+      <img :src="venue_img" class="venue-list-img" alt="">
+    </div>
   </div>
 </template>
 

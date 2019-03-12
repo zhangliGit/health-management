@@ -4,7 +4,7 @@
  * @date 2019/3/11
  */
 
-import $ajax from '@a/js/ajax-service.js'
+import $ajax from '../../assets/js/ajax-service.js'
 import apiUrl from '../../assets/js/config-api'
 
 const venue = {
@@ -21,62 +21,58 @@ const venue = {
     /**
      * @des 获取场馆类型
      */
-    getVenueList ({commit, state}, params) {
-      $ajax({
+    async getVenueList ({commit, state}, params) {
+      const res = await $ajax.get({
         url: apiUrl.venueList
-      }).then(data => {
-        commit('setDate', {'key': 'venueList', data: data.data})
       })
+      commit('setData', {'key': 'venueList', data: res.data})
     },
     /**
      * @des 加载首页banner图
      */
-    getBannerList ({commit, state}, params) {
-      $ajax({
+    async getBannerList ({commit, state}, params) {
+      const res = await $ajax.get({
         url: apiUrl.bannerList
-      }, false).then(data => {
-        commit('setDate', {'key': 'bannerList', data: data.data})
-      })
+      }, false)
+      commit('setData', {'key': 'bannerList', data: res.data})
     },
     /**
      * @des 加载首页banner图
      */
-    getUserInfo ({commit, state}, params) {
-      $ajax({
+    async getUserInfo ({commit, state}, params) {
+      const res = await $ajax.get({
         url: apiUrl.userInfo
-      }, false).then(data => {
-        commit('setDate', {'key': 'userInfo', data: data.data})
-      })
+      }, false)
+      commit('setData', {'key': 'userInfo', data: res.data})
     },
     /**
      * @des 获取通知公告
      */
-    getNoticeList ({commit, state}, params = {}) {
-      let page
+    async getNoticeList ({commit, state}, params = {}) {
       if (params.type) {
-        page = ++state.noticePage
+        state.noticePage++
       } else {
-        page = 1
+        state.noticePage = 1
       }
-      $ajax({
+      const res = await $ajax.get({
         url: apiUrl.noticeList,
         params: {
-          page: page,
+          page: state.noticePage,
           size: state.size
         }
-      }, false).then(data => {
-        if (params.cb) params.cb(data.data.length)
-        if (params.type) {
-          data = state.noticeList.concat(data.data)
-        } else {
-          data = data.data
-        }
-        commit('setDate', {'key': 'noticeList', data})
-      })
+      }, false)
+      let data
+      if (params.type) {
+        data = state.noticeList.concat(res.data)
+      } else {
+        data = res.data
+      }
+      commit('setData', {'key': 'noticeList', data})
+      if (params.cb) params.cb(res.data.length)
     }
   },
   mutations: {
-    setDate (state, obj) {
+    setData (state, obj) {
       state[obj.key] = obj.data
     }
   }

@@ -18,7 +18,7 @@
         <div class="co-mg-t04 co-fs-01 co-cl-2">课程时间：{{course.time}}</div>
       </div>
       <div class="co-flex co-ver co-ae">
-        <div class="course-choose co-bd-a1 co-flex co-ac co-jc" @click="choice">
+        <div class="course-choose co-bd-a1 co-flex co-ac co-jc" @click="choice(course)">
           <i class="coicon coicon-clock co-fs-2"></i><span class="co-fs-01 co-pd-l02">预约</span>
         </div>
         <div class="co-mg-t08">还可预约{{course.number}}人</div>
@@ -51,10 +51,11 @@ export default {
     ...mapActions('course', [
       'choiceCourse'
     ]),
-    choice (id) {
-      this.choiceCourse({
-        cb: () => {
-          this.$loading.toast('预约成功', 1)
+    choice (item) {
+      this.$router.push({
+        name: 'classList',
+        params: {
+          ...item
         }
       })
     }

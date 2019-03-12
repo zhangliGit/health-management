@@ -1,7 +1,7 @@
 <template>
   <div class="co-f1 co-flex co-ver co-cl-1">
     <header-com :title="title" isBack></header-com>
-    <scroll-list :to-top = "true" isRequest ref = "scroll" :page-size = "pageSize" pull-down-refresh  pull-up-load @show-data = "showData">
+    <scroll-list :to-top = "true" isRequest ref = "scroll" :page-size = "pageSize" pull-down-refresh  pull-up-load @show-data = "showData1">
       <div>
         <div v-for="(item, index) in dataList" :key="index" @click="goDetail" class="co-pd-a08 co-bd-b co-bg-0">
           <div>{{item.title}}</div>
@@ -22,7 +22,7 @@ export default {
     if (from.path === '/') {
       next(vm => {
         let _self = vm
-        vm.showData({
+        vm.showData1({
           type: 0,
           cb (len) {
             _self.$refs.scroll.upShow(len)
@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     ...mapActions('demoPage',[
-      'showData'
+      'showData1'
     ]),
     goDetail () {
       this.$router.push('/AjaxDetail') 

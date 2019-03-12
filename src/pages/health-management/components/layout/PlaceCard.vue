@@ -15,7 +15,7 @@
           <div class="co-mg-t04 co-fs-01 co-cl-2">泛亚场馆</div>
         </div>
         <div @click="choiceP(place.id, place.number)" class="place-choose co-bd-a1 co-flex co-ac co-jc">
-          预定
+          预约
         </div>
       </div>
       <div class="place-time co-bd-b co-bd-t">
@@ -57,11 +57,7 @@ export default {
       'choicePlace'
     ]),
     choiceP () {
-      this.choicePlace({
-        cb: () => {
-          this.$loading.toast('预约成功', 1)
-        }
-      })
+      this.choicePlace()
     }
   },
   mounted () {

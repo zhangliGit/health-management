@@ -18,7 +18,8 @@
           </div>
           <div class="co-f1 co-mg-l1">
             <div class="co-fs-1">{{placeInfo.name}}</div>
-            <div class="co-mg-t04 co-cl-2 co-fs-01">开放时间：{{placeInfo.day}} {{placeInfo.time}} </div>
+            <div class="co-mg-t02 co-cl-2 co-fs-01">开放日：{{placeInfo.day | showDay}} </div>
+            <div class="co-mg-t02 co-cl-2 co-fs-01">开放时间：{{placeInfo.time.join(',')}} </div>
           </div>
         </div>
         <calendar-bar ref="calendarBar" @current-day = "currentDay"></calendar-bar>
@@ -34,6 +35,8 @@ import ScrollList from '@c/ScrollList'
 import CalendarBar from '@c/CalendarBar'
 import PlaceCard from '../components/layout/PlaceCard'
 import { mapState, mapActions} from 'vuex'
+import mixins from '../assets/js/mixins'
+
 export default {
   name: 'PlaceList',
   components: {
@@ -42,13 +45,14 @@ export default {
     PlaceCard,
     CalendarBar
   },
+  mixins: [mixins],
   data () {
     return {
       title: '场地列表'
     }
   },
   created() {
-    this.getPlaceNumList(this.$route.params.id)
+    this.currentDay('12')
   },
   computed: {
     placeInfo () {
@@ -60,7 +64,11 @@ export default {
     ])
   },
   methods: {
-    currentDay () {
+    currentDay (day) {
+      this.getPlaceNumList({
+        id: this.$route.params.id,
+        date: day
+      })
     },
     ...mapActions('place', [
       'getPlaceNumList'
@@ -93,7 +101,7 @@ export default {
       }
     }
     .place-des {
-      height: 132px;
+      height: 150px;
       padding: 0 30px;
     }
   }

@@ -8,7 +8,9 @@
   <div class="co-f1 co-flex co-ver">
     <tab-menu :tab-menu="tabMenu"  @tabCurrent = "tabCurrent"></tab-menu>
     <scroll-list ref="scroll">
-      <choice-card :type="type" :choice-list="myChoice"></choice-card>
+      <div>
+        <choice-card :type="type" :choice-list="myChoice"></choice-card>
+      </div>
     </scroll-list>
   </div>
 </template>

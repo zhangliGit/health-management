@@ -4,39 +4,67 @@
  * @date 2019/3/11
  */
 
-import $ajax from '@a/js/ajax-service.js'
+import Vue from 'vue'
+import $ajax from '../../assets/js/ajax-service.js'
 import apiUrl from '../../assets/js/config-api'
 
 const course = {
   namespaced: true,
   state: {
     size: 10,
+    coursePage: 1,
     courseList: [],
-    choiceCourse: []
+    classList: [],
+    choiceCourse: [],
+    myChoice: []
   },
   actions: {
     /**
      * @des 获取课程列表
      */
-    getCourseList ({commit, state}, params) {
-      $ajax({
-        url: apiUrl.courseList
-      }).then(data => {
-        commit('setDate', {'key': 'courseList', data: data.data})
+    async getCourseList ({commit, state}, params) {
+      if (params.type) {
+        state.coursePage++
+      } else {
+        state.coursePage = 1
+      }
+      const res = await $ajax.get({
+        url: apiUrl.courseList,
+        params: {
+          page: state.coursePage,
+          size: state.size
+        }
       })
+      let data
+      if (params.type) {
+        data = state.courseList.concat(res.data)
+      } else {
+        data = res.data
+      }
+      commit('setData', {'key': 'courseList', data})
+      if (params.cb) params.cb(res.data.length)
+    },
+    /**
+     * @des 获取课程小节类别
+     * @params id: 课程id
+     */
+    async getClassList ({commit, state}, params = {}) {
+      const res = await $ajax.get({
+        url: apiUrl.classList,
+        params
+      })
+      commit('setData', {'key': 'classList', data: res.data})
     },
     /**
      * @des 预约课程
      */
-    choiceCourse ({commit, state}, params) {
-      $ajax({
-        url: apiUrl.courseChoice,
-        type: 'post',
-        params: {
-        }
-      }).then(data => {
-        params.cb()
+    async choiceClass ({commit, state}, params = {}) {
+      await $ajax.post({
+        url: apiUrl.choiceClass,
+        params
       })
+      Vue.$vux.toast.text('预约成功')
+      if (params.cb) params.cb()
     },
     /**
      * 已预约场馆和课程
@@ -47,11 +75,12 @@ const course = {
         params: {
         }
       }).then(data => {
+
       })
     }
   },
   mutations: {
-    setDate (state, obj) {
+    setData (state, obj) {
       state[obj.key] = obj.data
     }
   }

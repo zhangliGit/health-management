@@ -11,7 +11,7 @@ const demoPage = {
     /**
     * @ 获取数据列表
     */
-    showData ({ commit, state }, obj) {
+    showData1 ({ commit, state }, obj) {
       if (obj.type === 0) {
         state.page = 1
       } else {

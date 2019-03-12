@@ -6,21 +6,26 @@
 
 <template>
   <div class="co-f1 co-flex co-ver">
-    <scroll-list ref="scroll">
-      <course-list :course-list="courseList"></course-list>
+    <calendar-bar ref="calendarBar" @current-day = "currentDay"></calendar-bar>
+    <scroll-list ref = "scroll" pull-down-refresh  pull-up-load @show-data = "getCourseList">
+      <div>
+        <course-list :course-list="courseList"></course-list>
+      </div>
     </scroll-list>
   </div>
 </template>
 
 <script>
 import ScrollList from '@c/ScrollList'
+import CalendarBar from '@c/CalendarBar'
 import CourseList from '../components/layout/CourseList'
 import { mapState, mapActions } from 'vuex'
 export default {
   name: 'Course',
   components: {
     ScrollList,
-    CourseList
+    CourseList,
+    CalendarBar
   },
   data () {
     return {
@@ -34,10 +39,18 @@ export default {
   methods: {
     ...mapActions('course', [
       'getCourseList'
-    ])
+    ]),
+    currentDay () {
+      this.getCourseList({
+        type: 0,
+        cb: (len) => {
+          this.$refs.scroll.upShow(len)
+        }
+      })
+    }
   },
   created() {
-    this.getCourseList()
+    this.currentDay()
   },
   mounted () {
   }

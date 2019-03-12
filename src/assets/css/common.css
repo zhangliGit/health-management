@@ -69,9 +69,6 @@
   width: 8px !important
 }
 /**点击效果**/
-* {
-  touch-action: pan-y;
-}
 .btn-tap-bg:active, .btn-tap-bg:focus {
   background: #eee
 }

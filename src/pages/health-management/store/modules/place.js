@@ -4,7 +4,8 @@
  * @date 2019/3/11
  */
 
-import $ajax from '@a/js/ajax-service.js'
+import Vue from 'vue'
+import $ajax from '../../assets/js/ajax-service.js'
 import apiUrl from '../../assets/js/config-api'
 
 const place = {
@@ -18,33 +19,28 @@ const place = {
     /**
      * @des 获取场馆所有场地
      */
-    getPlaceList ({commit, state}, params) {
-      $ajax({
+    async getPlaceList ({commit, state}, params) {
+      const res = await $ajax.get({
         url: apiUrl.placeList
-      }).then(data => {
-        commit('setDate', {'key': 'placeList', data: data.data})
       })
+      commit('setData', {'key': 'placeList', data: res.data})
     },
     /**
      * @des 获取场地使用情况
      */
-    getPlaceNumList ({commit, state}, date) {
-      $ajax({
+    async getPlaceNumList ({commit, state}, params) {
+      const res = await $ajax.get({
         url: apiUrl.placeNumList,
-        params: {
-          date
-        }
-      }).then(data => {
-        commit('setDate', {'key': 'placeNumList', data: data.data})
+        params
       })
+      commit('setData', {'key': 'placeNumList', data: res.data})
     },
     /**
      * @des 预定场地
      */
-    choicePlace ({commit, state}, params) {
-      $ajax({
-        url: apiUrl.placeNumList,
-        type: 'post',
+    async choicePlace ({commit, state}, params = {}) {
+      await $ajax.post({
+        url: apiUrl.reservePlace,
         params: {
           id: '',
           number: '',
@@ -52,13 +48,13 @@ const place = {
           sTime: '',
           eTime: ''
         }
-      }).then(data => {
-        params.cb()
       })
+      Vue.$vux.toast.text('预定成功')
+      if (params.cb) params.cb()
     }
   },
   mutations: {
-    setDate (state, obj) {
+    setData (state, obj) {
       state[obj.key] = obj.data
     }
   }

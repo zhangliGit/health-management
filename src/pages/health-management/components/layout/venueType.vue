@@ -11,7 +11,7 @@
       </div>
       <div class="co-f1 co-pd-l06">
         <div><span class="co-pd-r04">{{venue.name}}</span>({{venue.use}}/{{venue.total}})</div>
-        <div class="co-mg-t04 co-fs-01 co-cl-2">开放时间：{{venue.time}}</div>
+        <div class="co-mg-t04 co-fs-01 co-cl-2">开放时间：{{venue.day | showDay}}</div>
       </div>
       <div class="venue-choose co-bd-a1 co-flex co-ac co-jc" @click="placeList(index, venue.id)">
         <i class="coicon coicon-clock co-fs-2"></i><span class="co-fs-01 co-pd-l02">预约</span>
@@ -21,8 +21,11 @@
 </template>
 
 <script>
+import mixins from '../../assets/js/mixins'
+
 export default {
   name: 'VenueType',
+  mixins: [mixins],
   components: {
   },
   props: {

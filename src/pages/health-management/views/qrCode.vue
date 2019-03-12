@@ -10,12 +10,12 @@
     <div class="co-f1">
       <div class="qr_person">
         <div class="co-flex co-ac"> 
-          <img class="person_icon" :src="personIcon" alt="">
-          <span class="co-pd-l06 co-fs-2">张东海</span>
+          <img class="person_icon" :src="userInfo.pic" alt="">
+          <span class="co-pd-l06 co-fs-2">{{userInfo.name}}</span>
         </div>
       </div>
       <div class="qr_com">
-        <img class="qr_img" :src="qrCode" alt="">
+        <img class="qr_img" :src="userInfo.qrcode" alt="">
       </div>
       <div class="co-cl-3 co-tx-c">
         扫一扫上面的二维码，添加我为好友
@@ -28,6 +28,8 @@
 import HeaderCom from '@c/HeaderCom'
 import personIcon from '../assets/images/person_icon.png'
 import qrCode from '../assets/images/qr_code.png'
+import { mapState } from 'vuex'
+
 export default {
   name: 'QrCode',
   components: {
@@ -43,6 +45,9 @@ export default {
   created() {
   },
   computed: {
+    ...mapState('venue', [
+      'userInfo'
+    ])
   },
   methods: {
   },
