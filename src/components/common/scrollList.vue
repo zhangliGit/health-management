@@ -100,6 +100,7 @@ export default {
     },
     refresh() {
       this.$nextTick(() => {
+        this.scroll.finishPullUp()
         this.scroll.refresh();
       });
     },
@@ -107,8 +108,8 @@ export default {
       this.scroll.scrollTo(0, 0, 500, 'easing')
     },
     upShow(len) {
-      this.scroll.scrollTo(0, 0, 300, 'easing')
       this.refresh();
+      this.scroll.scrollTo(0, 0, 300, 'easing')
       if (typeof len === 'undefined') {
         if (!this.isShowData) {
           return

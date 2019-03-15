@@ -68,6 +68,6 @@ export default {
     border-left:none !important
   }
   .vux-button-group > a.vux-button-group-current {
-    background:#d81e06 !important
+    background:#333 !important
   }
 </style>

@@ -6,10 +6,11 @@
 
 <template>
   <div class="co-f1 co-flex co-ver">
-    <tab-menu :tab-menu="tabMenu"  @tabCurrent = "tabCurrent"></tab-menu>
-    <scroll-list ref="scroll">
+    <tab-menu :tab-menu="tabMenu"  @tab-current = "tabCurrent"></tab-menu>
+    <scroll-list ref="scroll" pull-down-refresh pull-up-load :page-size = "size" @show-data = "showData">
       <div>
-        <choice-card :type="type" :choice-list="myChoice"></choice-card>
+        <choice-place v-show="tabType === 1" :choice-list="choicePlaceList"></choice-place>
+        <choice-course v-show="tabType === 2" :choice-list="choiceCourseList"></choice-course>
       </div>
     </scroll-list>
   </div>
@@ -18,18 +19,20 @@
 <script>
 import ScrollList from '@c/ScrollList'
 import TabMenu from '@c/TabMenu'
-import ChoiceCard from '../components/layout/ChoiceCard'
+import ChoicePlace from '../components/layout/ChoicePlace'
+import ChoiceCourse from '../components/layout/ChoiceCourse'
 import { mapState, mapActions } from 'vuex'
 export default {
   name: 'Choice',
   components: {
     ScrollList,
-    ChoiceCard,
+    ChoicePlace,
+    ChoiceCourse,
     TabMenu
   },
   data () {
     return {
-      type: 1,
+      levelTabType: 1,
       tabMenu: [
         {
           id: 0,
@@ -49,20 +52,45 @@ export default {
       ]
     }
   },
+  watch: {
+    tabType (nd, od) {
+      this.tabCurrent({type: this.levelTabType})
+    }
+  },
+  created() {
+  },
   computed: {
-    ...mapState('course', [
-      'myChoice'
+    ...mapState('choice', [
+      'size',
+      'tabType',
+      'choicePlaceList',
+      'choiceCourseList'
     ])
   },
   methods: {
-    ...mapActions('course', [
-      'choiceList'
+    showData (obj) {
+      this.getChoiceList({
+        ...obj,
+        tabType: this.tabType,
+        levelTabType: this.levelTabType,
+      })
+    },
+    ...mapActions('choice', [
+      'getChoiceList'
     ]),
     tabCurrent (item) {
-      this.type = item.type
+      let _self = this
+      this.levelTabType = item.type
+      this.showData({
+        type: 0,
+        cb (len) {
+          _self.$refs.scroll.upShow(len)
+        }
+      })
     }
   },
   mounted () {
+    this.tabCurrent({type: 1})
   }
 }
 </script>

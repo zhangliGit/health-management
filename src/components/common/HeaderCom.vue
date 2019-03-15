@@ -6,7 +6,7 @@
         </div>
         <slot name="lef-btn"></slot>
       </div>
-      <div class="co-cl-0 co-header-title co-tx-c">
+      <div class="co-cl-0 co-header-title co-tx-c co-flex co-ac co-jc">
         <span v-if="title !== ''">{{title}}</span>
         <slot name="center-menu"></slot>
       </div>

@@ -11,9 +11,9 @@
       </div>
       <div class="co-f1 co-pd-l06">
         <div class="co-fs-1">{{choice.time}}</div>
-        <div class="co-mg-t04 co-fs-01 co-cl-2">{{choice.code}}#{{choice.name}}</div>
+        <div class="co-mg-t04 co-fs-01 co-cl-2">{{choice.number}}#{{choice.placeName}}</div>
       </div>
-      <div class="choice-choose co-bd-a1 co-flex co-ac co-jc" v-if="type === 1">
+      <div class="choice-choose co-bd-a1 co-flex co-ac co-jc">
         取消
       </div>
     </div>
